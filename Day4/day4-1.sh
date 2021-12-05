@@ -30,7 +30,7 @@ for n in "${drawArr[@]}"; do
     for i in {1..${#gridsArr[@]}}; do
         percent=$(( $i * 100 / ${#gridsArr[@]} ))
         echo -ne "Processing grids: $percent%\r\c"
-        gridsArr[${i}]="$(echo $gridsArr[${i}] | sed "s/^${n}[[:space:]]/a /" | sed "s/[[:space:]]${n}[[:space:]]/ a /" | sed "s/[[:space:]]${n}$/ a/")"
+        gridsArr[${i}]="$(echo $gridsArr[${i}] | sed "s/^${n}[[:space:]]/a /" | sed "s/^[[:space:]]${n}[[:space:]]/a /" | sed "s/[[:space:]]${n}[[:space:]]/ a /" | sed "s/[[:space:]]${n}$/ a/")"
         for j in {1..5}; do
             if [[ "$(echo $gridsArr[${i}] | sed "${j}q;d")" ==  "$h" || "$(echo $gridsArr[${i}] | awk -v var=$j '{print $var}')" == "$v" ]]; then
                 echo ""
